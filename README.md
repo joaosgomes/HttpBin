@@ -10,6 +10,15 @@ Available on `https://httpbin.agrd.workers.dev/`.
 
 ## How to debug
 
+Install dependencies and build:
+
+```bash
+npm install
+npm run build
+```
+
+Run the local server:
+
 ```bash
 npx wrangler dev
 ```

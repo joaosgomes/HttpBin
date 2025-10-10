@@ -1,0 +1,21 @@
+{
+  "name": "httpbin",
+  "version": "1.0.0",
+  "description": "This is a Cloudflare Worker port of httpbin.org HTTP request & response testing service.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/index.js --bundle --outfile=dist/index.js",
+    "start": "wrangler dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AdguardTeam/HttpBin.git"
+  },
+  "author": "AdGuard",
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "0.25.10",
+    "wrangler": "^4.42.2"
+  }
+}
