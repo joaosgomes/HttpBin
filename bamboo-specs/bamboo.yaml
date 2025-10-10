@@ -31,6 +31,8 @@ Deploy:
             set -e -f -u -x
 
             npm install
+            npm run lint
+            npm run test
             npm run build
 
             CLOUDFLARE_API_TOKEN=${bamboo.cloudflareWorkersDeployerTokenPassword} \
