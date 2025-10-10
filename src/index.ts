@@ -48,6 +48,7 @@ import {
   serveWs,
 } from './formats.js';
 import { serveAvailableMethods, renderHTMLPage, renderHtmlForm, serveLinks } from './ui.js';
+import { serveOhttpConfig, serveOhttpGateway } from './ohttp.js';
 
 addEventListener('fetch', (event: FetchEvent) => {
   event.respondWith(
@@ -149,7 +150,7 @@ async function handleRequest(request: Request): Promise<Response> {
     case path.startsWith('/redirect/'):
       return serveMultipleRedirects(path);
     case path.startsWith('/relative-redirect/'):
-      return serveRelativeRedirects(path, url);
+      return serveRelativeRedirects(path);
     case path.startsWith('/response-headers'):
       return serveResponseHeaders(url.searchParams);
     case path.startsWith('/status/'):
@@ -164,6 +165,10 @@ async function handleRequest(request: Request): Promise<Response> {
       return serveXML();
     case path.startsWith('/xml/'):
       return serveXMLValue(path);
+    case path === '/ohttp/config':
+      return serveOhttpConfig();
+    case path === '/ohttp/gateway':
+      return serveOhttpGateway(request, handleRequest);
     default:
       return new Response('Endpoint not found', { status: 404 });
   }

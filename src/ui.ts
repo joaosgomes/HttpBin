@@ -101,6 +101,19 @@ export function serveAvailableMethods(): Response {
                 <li><a href="xml">/xml</a> - Returns some XML.</li>
                 <li><a href="xml/%3Ctest%2F%3E">/xml/:value</a> - Returns some XML.</li>
             </ul>
+
+            <h3>Oblivious HTTP (OHTTP) Endpoints</h3>
+            <p>
+                Implements <a href="https://www.ietf.org/rfc/rfc9458.html">RFC 9458</a> for privacy-preserving HTTP requests.
+            </p>
+            <ul>
+                <li><code>/ohttp/config</code> - Returns OHTTP KeyConfig for client encapsulation.</li>
+                <li>
+                  <code>/ohttp/gateway</code> - Accepts OHTTP-encapsulated requests, decapsulates them,
+                  processes them internally against httpbin endpoints (regardless of the target host),
+                  and returns OHTTP-encapsulated responses.
+                </li>
+            </ul>
         </main>
     </body>
 

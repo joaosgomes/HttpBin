@@ -82,3 +82,10 @@ This project is written in TypeScript and uses:
 - [/user-agent](https://httpbin.agrd.workers.dev/user-agent) - Returns user-agent.
 - [/xml](https://httpbin.agrd.workers.dev/xml) - Returns some XML.
 - [/xml/:value](https://httpbin.agrd.workers.dev/xml/%3Ctest%2F%3E) - Returns the specified XML.
+
+## Oblivious HTTP (OHTTP) Gateway Endpoints
+
+Httpbin also includes Oblivious HTTP gateway endpoints as specified in [RFC 9458](https://www.ietf.org/rfc/rfc9458.html).
+
+- `/ohttp/config` - Returns the OHTTP KeyConfig that clients use to encapsulate their requests.
+- `/ohttp/gateway` - Accepts OHTTP-encapsulated requests, decapsulates them, processes them internally against httpbin endpoints (regardless of the target host), and returns OHTTP-encapsulated responses.

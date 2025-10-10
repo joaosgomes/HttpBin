@@ -10,8 +10,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "lint": "prettier --check --no-error-on-unmatched-pattern --cache . && markdownlint .",
-    "lint:fix": "prettier --write --no-error-on-unmatched-pattern --cache . && markdownlint --fix ."
+    "lint": "eslint . && prettier --check --no-error-on-unmatched-pattern --cache . && markdownlint .",
+    "lint:fix": "eslint --fix . && prettier --write --no-error-on-unmatched-pattern --cache . && markdownlint --fix ."
   },
   "repository": {
     "type": "git",
@@ -22,12 +22,20 @@
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.9.12",
     "@cloudflare/workers-types": "^4.20241127.0",
+    "@eslint/js": "^9.37.0",
     "@vitest/ui": "^3.2.4",
     "esbuild": "0.25.10",
+    "eslint": "^9.37.0",
+    "globals": "^16.4.0",
+    "jiti": "^2.6.1",
     "markdownlint-cli": "^0.45.0",
     "prettier": "^3.6.2",
     "typescript": "^5.7.2",
+    "typescript-eslint": "^8.46.0",
     "vitest": "^3.2.4",
     "wrangler": "^4.42.2"
+  },
+  "dependencies": {
+    "ohttp-js": "^0.1.5"
   }
 }

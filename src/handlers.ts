@@ -120,21 +120,21 @@ export function getHostname(request: Request): Response {
 
 export async function anythingResponse(request: Request): Promise<Response> {
   if (!request || !request.url) {
-    return new Response('Invalid request URL', { status: 400 });
+    return new Response(`Invalid request URL: ${request.url}`, { status: 400 });
   }
 
   let url: URL;
   try {
     url = new URL(request.url);
   } catch (e) {
-    return new Response('Invalid URL string', { status: 400 });
+    return new Response(`Invalid URL string: ${e}`, { status: 400 });
   }
 
   const method = request.method;
 
   // Maintaining the case of header keys
   const headers: Record<string, string[]> = {};
-  for (let [key, value] of request.headers.entries()) {
+  for (const [key, value] of request.headers.entries()) {
     headers[key.charAt(0).toUpperCase() + key.slice(1)] = [value];
   }
 

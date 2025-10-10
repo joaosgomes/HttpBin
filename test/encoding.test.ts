@@ -39,7 +39,8 @@ describe('encoding', () => {
 
       expect(response.status).toBe(400);
       const text = await response.text();
-      expect(text).toBe('Error decoding base64');
+
+      expect(text).toBe('Error decoding base64: InvalidCharacterError: Invalid character');
     });
   });
 

@@ -19,7 +19,7 @@ export function absoluteRedirect(path: string, url: URL): Response {
   });
 }
 
-export function serveRelativeRedirects(path: string, url: URL): Response {
+export function serveRelativeRedirects(path: string): Response {
   const n = parseInt(path.split('/')[2]);
 
   if (isNaN(n) || n < 0) {

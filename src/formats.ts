@@ -23,7 +23,7 @@ export function serveJSONValue(path: string): Response {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (err) {
-    return new Response(`Invalid JSON format: ${value}`, { status: 400 });
+    return new Response(`Invalid JSON format: ${value} | ${err}`, { status: 400 });
   }
 }
 

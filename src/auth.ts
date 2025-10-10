@@ -3,6 +3,7 @@
  */
 
 export function challengeBasicAuth(request: Request, path: string): Response {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, __, user, passwd] = path.split('/');
   const authHeader = request.headers.get('Authorization');
   if (!authHeader || !authHeader.startsWith('Basic ')) {
