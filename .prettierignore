@@ -1,0 +1,8 @@
+# Node modules
+node_modules
+
+# Build dist
+dist
+
+# Ignore markdown, we have markdownlint for that
+*.md

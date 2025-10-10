@@ -12,29 +12,29 @@ import {
   getHostname,
   anythingResponse,
   delayResponse,
-} from "./handlers.js";
+} from './handlers.js';
 import {
   absoluteRedirect,
   serveRelativeRedirects,
   serveMultipleRedirects,
   serveRedirectTo,
-} from "./redirects.js";
-import { challengeBasicAuth } from "./auth.js";
-import { decodeBase64, encodeBase64 } from "./encoding.js";
+} from './redirects.js';
+import { challengeBasicAuth } from './auth.js';
+import { decodeBase64, encodeBase64 } from './encoding.js';
 import {
   checkCacheHeaders,
   setCacheControl,
   getCookies,
   deleteCookies,
   setCookies,
-} from "./cache-cookies.js";
+} from './cache-cookies.js';
 import {
   serveImageBasedOnHeader,
   serveJpegImage,
   servePngImage,
   serveSvgImage,
   serveWebpImage,
-} from "./images.js";
+} from './images.js';
 import {
   serveJSON,
   serveJSONValue,
@@ -46,15 +46,10 @@ import {
   serveStatusNoResponse,
   serveResponseHeaders,
   serveWs,
-} from "./formats.js";
-import {
-  serveAvailableMethods,
-  renderHTMLPage,
-  renderHtmlForm,
-  serveLinks,
-} from "./ui.js";
+} from './formats.js';
+import { serveAvailableMethods, renderHTMLPage, renderHtmlForm, serveLinks } from './ui.js';
 
-addEventListener("fetch", (event) => {
+addEventListener('fetch', (event: FetchEvent) => {
   event.respondWith(
     (async function () {
       const response = await handleRequest(event.request);
@@ -65,111 +60,111 @@ addEventListener("fetch", (event) => {
       }
 
       const newHeaders = new Headers(response.headers);
-      newHeaders.set("Access-Control-Allow-Origin", "*");
+      newHeaders.set('Access-Control-Allow-Origin', '*');
 
       return new Response(response.body, {
         status: response.status,
         statusText: response.statusText,
         headers: newHeaders,
       });
-    })()
+    })(),
   );
 });
 
-async function handleRequest(request) {
+async function handleRequest(request: Request): Promise<Response> {
   const url = new URL(request.url);
   const path = url.pathname;
 
   switch (true) {
-    case request.method === "OPTIONS":
+    case request.method === 'OPTIONS':
       return serveOptions();
-    case path === "/":
+    case path === '/':
       return serveAvailableMethods();
-    case path.startsWith("/absolute-redirect/"):
+    case path.startsWith('/absolute-redirect/'):
       return absoluteRedirect(path, url);
-    case path.startsWith("/anything"):
+    case path.startsWith('/anything'):
       return anythingResponse(request);
-    case path.startsWith("/base64/decode/"):
+    case path.startsWith('/base64/decode/'):
       return decodeBase64(path);
-    case path.startsWith("/base64/encode/"):
+    case path.startsWith('/base64/encode/'):
       return encodeBase64(path);
-    case path.startsWith("/basic-auth/"):
+    case path.startsWith('/basic-auth/'):
       return challengeBasicAuth(request, path);
-    case path.startsWith("/bytes/"):
+    case path.startsWith('/bytes/'):
       return generateRandomBytes(path, url);
-    case path === "/cache":
+    case path === '/cache':
       return checkCacheHeaders(request);
-    case path.startsWith("/cache/"):
+    case path.startsWith('/cache/'):
       return setCacheControl(request, path);
-    case path === "/cookies":
+    case path === '/cookies':
       return getCookies(request);
-    case path.startsWith("/cookies/delete"):
+    case path.startsWith('/cookies/delete'):
       return deleteCookies(request, url);
-    case path.startsWith("/cookies/set"):
+    case path.startsWith('/cookies/set'):
       return setCookies(request, url);
-    case path.startsWith("/delay/"):
+    case path.startsWith('/delay/'):
       return delayResponse(path);
-    case path === "/delete":
+    case path === '/delete':
       return handleDelete(request);
-    case path === "/forms/post":
+    case path === '/forms/post':
       return renderHtmlForm();
-    case path === "/get":
+    case path === '/get':
       return handleGet(request);
-    case path === "/head":
+    case path === '/head':
       return handleHead(request);
-    case path === "/headers":
+    case path === '/headers':
       return getHeaders(request);
-    case path === "/html":
+    case path === '/html':
       return renderHTMLPage();
-    case path === "/hostname":
+    case path === '/hostname':
       return getHostname(request);
-    case path === "/image":
+    case path === '/image':
       return serveImageBasedOnHeader(request);
-    case path === "/image/jpeg":
+    case path === '/image/jpeg':
       return serveJpegImage();
-    case path === "/image/png":
+    case path === '/image/png':
       return servePngImage();
-    case path === "/image/svg":
+    case path === '/image/svg':
       return serveSvgImage();
-    case path === "/image/webp":
+    case path === '/image/webp':
       return serveWebpImage();
-    case path === "/ip":
+    case path === '/ip':
       return getIp(request);
-    case path === "/json":
+    case path === '/json':
       return serveJSON();
-    case path.startsWith("/json/"):
+    case path.startsWith('/json/'):
       return serveJSONValue(path);
-    case path.startsWith("/links/"):
+    case path.startsWith('/links/'):
       return serveLinks(path);
-    case path === "/patch":
+    case path === '/patch':
       return handlePatch(request);
-    case path === "/post":
+    case path === '/post':
       return handlePost(request);
-    case path === "/put":
+    case path === '/put':
       return handlePut(request);
-    case path.startsWith("/range/"):
+    case path.startsWith('/range/'):
       return serveRange(path, request);
-    case path.startsWith("/redirect-to"):
+    case path.startsWith('/redirect-to'):
       return serveRedirectTo(url.searchParams);
-    case path.startsWith("/redirect/"):
+    case path.startsWith('/redirect/'):
       return serveMultipleRedirects(path);
-    case path.startsWith("/relative-redirect/"):
+    case path.startsWith('/relative-redirect/'):
       return serveRelativeRedirects(path, url);
-    case path.startsWith("/response-headers"):
+    case path.startsWith('/response-headers'):
       return serveResponseHeaders(url.searchParams);
-    case path.startsWith("/status/"):
+    case path.startsWith('/status/'):
       return serveStatus(path);
-    case path.startsWith("/status-no-response/"):
+    case path.startsWith('/status-no-response/'):
       return serveStatusNoResponse(path);
-    case path === "/user-agent":
+    case path === '/user-agent':
       return getUserAgent(request);
-    case path === "/ws":
+    case path === '/ws':
       return serveWs(request);
-    case path === "/xml":
+    case path === '/xml':
       return serveXML();
-    case path.startsWith("/xml/"):
+    case path.startsWith('/xml/'):
       return serveXMLValue(path);
     default:
-      return new Response("Endpoint not found", { status: 404 });
+      return new Response('Endpoint not found', { status: 404 });
   }
 }

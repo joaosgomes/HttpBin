@@ -16,16 +16,16 @@ stages:
 Deploy:
   docker:
     image: ${bamboo.dockerNode}
-  key: "WORKER"
+  key: 'WORKER'
   other:
     clean-working-dir: true
   requirements:
-    - "adg-docker": "true"
+    - 'adg-docker': 'true'
   tasks:
     - checkout:
         force-clean-build: true
     - script:
-        interpreter: "SHELL"
+        interpreter: 'SHELL'
         scripts:
           - |
             set -e -f -u -x
@@ -49,7 +49,7 @@ notifications:
           url: http://prod.jirahub.service.eu.consul/v1/webhook/bamboo
 
 branch-overrides:
-  - "^((?!master).)*$":
+  - '^((?!master).)*$':
       # for branched other than 'master' we run no stages
       stages: []
 

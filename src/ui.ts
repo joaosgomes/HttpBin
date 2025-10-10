@@ -2,7 +2,7 @@
  * UI/HTML rendering handlers
  */
 
-export function serveAvailableMethods() {
+export function serveAvailableMethods(): Response {
   const htmlContent = `<!DOCTYPE html>
     <html lang="en">
 
@@ -18,7 +18,7 @@ export function serveAvailableMethods() {
             * Copyright © 2015, Curtis McEnroe <curtis@cmcenroe.me>
             *
             * https://cmcenroe.me/writ/LICENSE (ISC)
-            */dd,hr,ol ol,ol ul,ul ol,ul ul{margin:0}pre,table{overflow-x:auto}a,ins{text-decoration:none}html{font-family:Palatino,Georgia,Lucida Bright,Book Antiqua,serif;font-size:16px;line-height:1.5rem}code,kbd,pre,samp{font-family:Consolas,Liberation Mono,Menlo,Courier,monospace;font-size:.833rem;color:#111}kbd{font-weight:700}h1,h2,h3,h4,h5,h6,th{font-weight:400}h1{font-size:2.488em}h2{font-size:2.074em}h3{font-size:1.728em}h4{font-size:1.44em}h5{font-size:1.2em}h6{font-size:1em}small{font-size:.833em}h1,h2,h3{line-height:3rem}blockquote,dl,h1,h2,h3,h4,h5,h6,ol,p,pre,table,ul{margin:1.5rem 0 0}pre,table{margin-bottom:-1px}hr{border:none;padding:1.5rem 0 0}table{line-height:calc(1.5rem - 1px);width:100%;border-collapse:collapse}pre{margin-top:calc(1.5rem - 1px)}body{color:#222;margin:1.5rem 1ch}a,a code,header nav a:visited{color:#00e}a:visited,a:visited code{color:#60b}mark{color:inherit;background-color:#fe0}code,pre,samp,tfoot,thead{background-color:rgba(0,0,0,.05)}blockquote,ins,main aside{border:rgba(0,0,0,.05) solid}blockquote,main aside{border-width:0 0 0 .5ch}code,pre,samp{border:rgba(0,0,0,.1) solid}td,th{border:solid #dbdbdb}body>header{text-align:center}body>footer,main{display:block;max-width:78ch;margin:auto}main aside,main figure{float:right;margin:1.5rem 0 0 1ch}main aside{max-width:26ch;padding:0 0 0 .5ch}blockquote{margin-right:3ch;margin-left:1.5ch;padding:0 0 0 1ch}pre{border-width:1px;border-radius:2px;padding:0 .5ch}pre code{border:none;padding:0;background-color:transparent;white-space:inherit}code,ins,samp,td,th{border-width:1px}img{max-width:100%}dd,ol,ul{padding:0 0 0 3ch}ul>li{list-style-type:disc}li ul>li{list-style-type:circle}li li ul>li{list-style-type:square}ol>li{list-style-type:decimal}li ol>li{list-style-type:lower-roman}li li ol>li{list-style-type:lower-alpha}nav ul{padding:0;list-style-type:none}nav ul li{display:inline;padding-left:1ch;white-space:nowrap}nav ul li:first-child{padding-left:0}ins,mark{padding:1px}td,th{padding:.25rem .5rem}th{text-align:left}@media (max-width:78ch){body{margin:1.5rem .5ch}}
+            */dd,hr,ol ol,ol ul,ul ol,ul ul{margin:0}pre,table{overflow-x:auto}a,ins{text-decoration:none}html{font-family:Palatino,Georgia,Lucida Bright,Book Antiqua,serif;font-size:16px;line-height:1.5rem}code,kbd,pre,samp{font-family:Consolas,Liberation Mono,Menlo,Courier,monospace;font-size:.833rem;color:#111}kbd{font-weight:700}h1,h2,h3,h4,h5,h6,th{font-weight:400}h1{font-size:2.488em}h2{font-size:2.074em}h3{font-size:1.728em}h4{font-size:1.44em}h5{font-size:1.2em}h6{font-size:1em}small{font-size:.833em}h1,h2,h3{line-height:3rem}blockquote,dl,h1,h2,h3,h4,h5,h6,ol,p,pre,table,ul{margin:1.5rem 0 0}pre,table{margin-bottom:-1px}hr{border:none;padding:1.5rem 0 0}table{line-height:calc(1.5rem - 1px);width:100%;border-collapse:collapse}pre{margin-top:calc(1.5rem - 1px)}body{color:#222;margin:1.5rem 1ch}a,a code,header nav a:visited{color:#00e}a:visited,a:visited code{color:#60b}mark{color:inherit;background-color:#fe0}code,pre,samp,tfoot,thead{background-color:rgba(0,0,0,.05)}blockquote,ins,main aside{border:rgba(0,0,0,.05) solid}blockquote,main aside{border-width:0 0 0 .5ch}code,pre,samp{border:rgba(0,0,0,.1) solid}td,th{border:solid #dbdbdb}body>header{text-align:center}body>footer,main{display:block;max-width:78ch;margin:auto}main aside,main figure{float:right;margin:1.5rem 0 0 1ch}main aside{max-width:26ch;padding:0 0 0 .5ch}blockquote{margin-right:3ch;margin-left:1.5ch;padding:0 0 0 1ch}pre{border-width:1px;border-radius:2px;padding:0 .5ch}pre code{border:none;padding:0;background-color:transparent;white-space:inherit}code,ins,samp,td,th{border-width:1px}img{max-width:100%}dd,ol,ul{padding:0 0 0 3ch}ul>li{list-style-type:disc}li ul>li{list-style-type:circle}li li ul>li{list-style-type:square}ol>li{list-style-type:decimal}li ol>li{list-style-type:lower-roman}li li ol>li{list-style-type:lower-alpha}nav ul{padding:0;list-style-type:none}nav ul li{display:inline;padding-left:1ch;white-space:nowrap}nav ul li:first-child{padding-left:0}ins,mark{padding:1px}td,th{padding:calc(.75rem - .5px)}
         </style>
     </head>
 
@@ -109,41 +109,41 @@ export function serveAvailableMethods() {
 
   return new Response(htmlContent, {
     headers: {
-      "Content-Type": "text/html",
+      'Content-Type': 'text/html',
     },
   });
 }
 
-export function renderHTMLPage() {
+export function renderHTMLPage(): Response {
   const html = `
       <html>
         <head><title>Sample HTML Page</title></head>
         <body><h1>Welcome to the Sample Page!</h1></body>
       </html>
     `;
-  return new Response(html, { headers: { "Content-Type": "text/html" } });
+  return new Response(html, { headers: { 'Content-Type': 'text/html' } });
 }
 
-export function renderHtmlForm() {
+export function renderHtmlForm(): Response {
   const html = `
       <form action="/post" method="post">
         <input type="text" name="sampleInput" placeholder="Enter something...">
         <input type="submit" value="Submit">
       </form>
     `;
-  return new Response(html, { headers: { "Content-Type": "text/html" } });
+  return new Response(html, { headers: { 'Content-Type': 'text/html' } });
 }
 
-export function serveLinks(path) {
-  const n = parseInt(path.split("/")[2]);
+export function serveLinks(path: string): Response {
+  const n = parseInt(path.split('/')[2]);
   if (isNaN(n)) {
-    return new Response("Invalid number", { status: 400 });
+    return new Response('Invalid number', { status: 400 });
   }
 
-  let linksHTML = "<html><body>";
+  let linksHTML = '<html><body>';
   for (let i = 0; i < n; i++) {
     linksHTML += `<a href="#link${i}">Link ${i}</a><br>`;
   }
-  linksHTML += "</body></html>";
-  return new Response(linksHTML, { headers: { "Content-Type": "text/html" } });
+  linksHTML += '</body></html>';
+  return new Response(linksHTML, { headers: { 'Content-Type': 'text/html' } });
 }
